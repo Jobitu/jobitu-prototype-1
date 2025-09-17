@@ -21,7 +21,7 @@ import {
   BookOpen,
   TestTube
 } from "lucide-react";
-import profileImage from 'figma:asset/fc4569e04e9edd96ce2a6bc04faab4e42283a9df.png';
+import profileImage from '../assets/default-profile.svg';
 
 interface ProfileOverviewTabsProps {
   userData: any;

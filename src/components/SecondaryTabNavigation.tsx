@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { ProfileOverviewTabs } from "./ProfileOverviewTabs";
 import { AchievementsBadgesPage } from "./AchievementsBadgesPage";
-import profileImage from '../assets/fc4569e04e9edd96ce2a6bc04faab4e42283a9df.png';
+import profileImage from '../assets/default-profile.svg';
 
 interface TabConfig {
   id: string;

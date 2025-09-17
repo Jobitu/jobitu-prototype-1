@@ -41,7 +41,7 @@ import {
 } from "lucide-react";
 import { SecondaryTabNavigation } from "./SecondaryTabNavigation";
 import { AchievementsBadgesPage } from "./AchievementsBadgesPage";
-import profileImage from 'figma:asset/fc4569e04e9edd96ce2a6bc04faab4e42283a9df.png';
+import profileImage from '../assets/default-profile.svg';
 
 interface PreviewMyProfileProps {
   onBack: () => void;

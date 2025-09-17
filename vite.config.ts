@@ -2,9 +2,10 @@
   import { defineConfig } from 'vite';
   import react from '@vitejs/plugin-react-swc';
   import path from 'path';
+  import svgr from 'vite-plugin-svgr';
 
   export default defineConfig({
-    plugins: [react()],
+    plugins: [react(), svgr()],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
@@ -17,7 +18,6 @@
         'next-themes@0.4.6': 'next-themes',
         'lucide-react@0.487.0': 'lucide-react',
         'input-otp@1.4.2': 'input-otp',
-        'figma:asset/fc4569e04e9edd96ce2a6bc04faab4e42283a9df.png': path.resolve(__dirname, './src/assets/fc4569e04e9edd96ce2a6bc04faab4e42283a9df.png'),
         'embla-carousel-react@8.6.0': 'embla-carousel-react',
         'cmdk@1.1.1': 'cmdk',
         'class-variance-authority@0.7.1': 'class-variance-authority',
