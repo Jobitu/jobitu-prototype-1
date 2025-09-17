@@ -1,0 +1,117 @@
+/* Global theme tokens and dark mode overrides */
+
+/*
+  We expose CSS variables that many UI primitives (e.g. buttons, cards)
+  already reference: --background, --foreground, --border, --ring, etc.
+  For legacy components using fixed Tailwind utilities like bg-white,
+  we add scoped overrides under .dark to ensure a cohesive dark look
+  without touching each component.
+*/
+
+:root {
+  /* Surfaces & text */
+  --background: var(--color-white);
+  --foreground: var(--color-gray-900);
+  --card: var(--color-white);
+  --card-foreground: var(--color-gray-900);
+  --popover: var(--color-white);
+  --popover-foreground: var(--color-gray-900);
+
+  /* UI tokens */
+  --muted: var(--color-gray-100);
+  --muted-foreground: var(--color-gray-600);
+  --accent: var(--color-blue-50);
+  --accent-foreground: var(--color-blue-800);
+  --secondary: var(--color-gray-100);
+  --secondary-foreground: var(--color-gray-900);
+  --destructive: var(--color-red-600);
+  --destructive-foreground: var(--color-white);
+
+  /* Borders / inputs / focus */
+  --border: var(--color-gray-200);
+  --input: var(--color-gray-200);
+  --ring: var(--color-blue-600);
+
+  /* Radius (used by some UI primitives) */
+  --radius: 0.5rem;
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* Dark palette: deep slate/ink surfaces with high-contrast text */
+  --background: #0b111a; /* app background */
+  --foreground: var(--color-slate-100);
+
+  --card: #0e1522; /* elevated surfaces */
+  --card-foreground: var(--color-slate-100);
+
+  --popover: #0e1522;
+  --popover-foreground: var(--color-slate-100);
+
+  --muted: #111a29;
+  --muted-foreground: var(--color-slate-400);
+
+  --accent: #132038; /* subtle selection */
+  --accent-foreground: var(--color-slate-100);
+
+  --secondary: #111a29;
+  --secondary-foreground: var(--color-slate-100);
+
+  --destructive: var(--color-red-600);
+  --destructive-foreground: var(--color-white);
+
+  --border: rgba(148, 163, 184, 0.15); /* slate-400 at ~15% */
+  --input: rgba(148, 163, 184, 0.18);
+  --ring: var(--color-blue-600);
+}
+
+/* Ensure body follows tokens even if legacy components don't */
+html, body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/*
+  Dark-mode safety overrides for commonly used fixed Tailwind utilities
+  in this codebase. We avoid !important by using the higher specificity
+  of `.dark .<class>` which wins over `.class`.
+*/
+.dark .bg-white { background-color: var(--card); }
+.dark .bg-gray-50 { background-color: #0f172a; /* slate-900 */ }
+.dark .bg-gray-100 { background-color: #132038; }
+.dark .bg-slate-50 { background-color: #0f172a; }
+
+.dark .text-black,
+.dark .text-gray-900 { color: var(--foreground); }
+.dark .text-gray-700 { color: var(--muted-foreground); }
+
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border-slate-200 { border-color: var(--border); }
+
+/* Inputs / panels */
+.dark .bg-gray-200 { background-color: #1b2942; }
+.dark .bg-gray-300 { background-color: #223251; }
+
+/* Shadows can look harsh on dark. Slightly softer via transparent borders */
+.dark .shadow,
+.dark .shadow-sm,
+.dark .shadow-md,
+.dark .shadow-lg { box-shadow: 0 1px 0 0 rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.35); }
+
+/* Radix / shadcn primitives that rely on tokens */
+[data-slot="card"],
+[data-slot="popover"],
+[data-slot="dialog"],
+[data-slot="sheet"],
+[data-slot="dropdown-content"],
+[data-slot="context-menu-content"] {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border-color: var(--border);
+}
+
+/* Buttons are largely token-driven already; ensure outline/ghost read well */
+.dark [data-slot="button"].border { border-color: var(--border); }
+.dark [data-slot="button"].hover\:bg-accent:hover { background-color: var(--accent); color: var(--accent-foreground); }
